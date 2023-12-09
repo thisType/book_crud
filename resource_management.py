@@ -6,7 +6,7 @@
 class BookManager:
 
     # variable initialization
-    def __int__(self, books):
+    def __init__(self, books):
         # holds book state
         self.books_dictionary = books
 
@@ -63,7 +63,7 @@ class BookManager:
 # class that manages media resource
 class MultiMediaManager:
 
-    def __int__(self, multi_media):
+    def __init__(self, multi_media):
         # holds data from a resource file
         self.media_dictionary = multi_media
 

@@ -7,8 +7,8 @@ from resources import *
 class BookUserInteraction:
 
     # gets book name from the user
-    def __init__(self, isbn_list, book_manager):
-        self.isbn_list = isbn_list
+    def __init__(self,  book_manager):
+        self.isbn_list = book_manager.get_isbn_list()
         self.book_manager = book_manager
 
     def get_book_title(self):
@@ -123,6 +123,31 @@ class BookUserInteraction:
         self.book_manager.add_book(delete)
         print("Delete successful")
 
+    # methods present book activity
+    def book_activity(self):
+
+        while True:
+            print("1. Add Book")
+            print("2. Find Book")
+            print("3. Update Book")
+            print("4. Delete Book")
+            print("5. Exit")
+
+            user_input = input("Selection")
+            if user_input == "1":
+                self.create_book()
+            elif user_input == "2":
+                self.user_find_book()
+            elif user_input == "3":
+                self.user_update_book()
+            elif user_input == "4":
+                self.user_delete_book()
+            elif user_input == "5":
+                print("Exiting...")
+                break
+            else:
+                print("Invalid selection!")
+
 
 class MediaUserInterface:
 
@@ -200,7 +225,7 @@ class MediaUserInterface:
 
             user_input = input("Selection")
             if user_input == "1":
-                media_id = input("Media Id")
+                media_id = input("Multimedia Id")
                 found_media = self.media_manager.find_multimedia_by_Id(media_id)
                 break
             elif user_input == "2":
@@ -211,20 +236,20 @@ class MediaUserInterface:
                 print("Invalid choice!")
 
         if found_media is None:
-            print("Found no media")
+            print("Found no multimedia")
 
         else:
             print("Found: %s \n %s \n %s %s" % (found_media.get_id(),
-                                                found_media.get_title(),found_media.get_media_description(),
+                                                found_media.get_title(), found_media.get_media_description(),
                                                 found_media.get_media_type()))
 
         if len(media) == 0:
             print("Found no book!")
         else:
 
-            for m in  media:
+            for m in media:
                 print("Found: %s \n %s \n %s %s" % (m.get_id(),
-                                                m.get_title(), m.get_media_description(),
+                                                    m.get_title(), m.get_media_description(),
                                                     m.get_media_type()))
 
     def media_update(self):
@@ -249,14 +274,29 @@ class MediaUserInterface:
 
         print("Deleted successfully ")
 
+    # methods handles multimedia activity
+    def multimedia_activity(self):
 
-    
+        while True:
+            print("1. Add Multimedia")
+            print("2. Search Multimedia")
+            print("3. Update Multimedia")
+            print("4. Delete Multimedia")
+            print("5. Exit")
 
+            user_input = input("Selection> ")
 
-
-
-
-
-
+            if user_input == "1":
+                self.create_media()
+            elif user_input == "2":
+                self.find_media()
+            elif user_input == "3":
+                self.media_update()
+            elif user_input == "4":
+                self.delete_media()
+            elif user_input == "5":
+                break
+            else:
+                print("Invalid selection!")
 
 
