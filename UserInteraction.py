@@ -15,7 +15,7 @@ class BookUserInteraction:
 
         while True:
 
-            user_input = input("Book Title: ")
+            user_input = input("Book Title:")
 
             if not user_input == "":
                 return user_input
@@ -27,7 +27,7 @@ class BookUserInteraction:
     def get_book_description(self):
 
         while True:
-            user_input = input("Book Description")
+            user_input = input("Book Description:")
 
             if user_input == "":
                 print("Book Must have a description!")
@@ -39,7 +39,7 @@ class BookUserInteraction:
 
         while True:
 
-            user_input = input("isbn")
+            user_input = input("isbn:")
 
             if user_input == "":
                 print("Book Must Have ISBN!")
@@ -67,7 +67,7 @@ class BookUserInteraction:
     def get_isbn_utility(self):
 
         while True:
-            isbn = input("ISBN: ")
+            isbn = input("ISBN:")
             if isbn.isdigit() and len(isbn) == 13:
                 return isbn
             else:
@@ -88,13 +88,13 @@ class BookUserInteraction:
             print("1.ISBN")
             print("2.Title")
 
-            user_input = input("Selection")
+            user_input = input("Selection:")
             if user_input == "1":
                 isbn = input("ISBN")
                 found_book = self.book_manager.find_book_by_isbn(isbn)
                 break
             elif user_input == "2":
-                user_title = input("Book title")
+                user_title = input("Book title:")
                 found_books = self.book_manager.find_books_by_title(user_title)
                 break
             else:
@@ -144,7 +144,7 @@ class BookUserInteraction:
             print("4. Delete Book")
             print("5. Exit")
 
-            user_input = input("Selection")
+            user_input = input("Selection>")
             if user_input == "1":
                 self.create_book()
             elif user_input == "2":
@@ -309,7 +309,7 @@ class MediaUserInterface:
             print("4. Delete Multimedia")
             print("5. Exit")
 
-            user_input = input("Selection> ")
+            user_input = input("Selection>")
 
             if user_input == "1":
                 self.create_media()
