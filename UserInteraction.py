@@ -57,7 +57,7 @@ class BookUserInteraction:
 
         while True:
 
-            user_input = input("Author: ")
+            user_input = input("Author:")
 
             if not user_input == "":
                 return user_input
@@ -77,6 +77,7 @@ class BookUserInteraction:
 
         book = Book(self.get_book_title(), self.get_book_description(), self.get_book_isbn(), self.get_book_author())
         self.book_manager.add_book(book)
+        print("Created succesfully")2
 
     def user_find_book(self):
 
@@ -170,7 +171,7 @@ class MediaUserInterface:
 
         while True:
 
-            user_input = input("media Id")
+            user_input = input("media Id:")
 
             if not user_input.isdigit():
                 print("Id must be a digit")
@@ -186,7 +187,7 @@ class MediaUserInterface:
 
         while True:
 
-            user_input = input("Media Title: ")
+            user_input = input("Media Title:")
 
             if user_input == "":
                 print("MultiMedia must have a title")
@@ -295,7 +296,7 @@ class MediaUserInterface:
 
             self.media_manager.delete_multi_media(delete_id)
 
-            print("Deleted successfully ")
+            print("Deleted successfully")
         else:
             print("media id doesnt exist")
 
