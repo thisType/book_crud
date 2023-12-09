@@ -42,7 +42,7 @@ class BookManager:
 
     # deletes a book
     def delete_book(self, isbn):
-        for title, book in self.books_dictionary:
+        for title, book in self.books_dictionary.items():
             if book.get_isbn() == isbn:
                 del self.books_dictionary[book.get_title()]
                 break
@@ -71,7 +71,7 @@ class MultiMediaManager:
     # adds a new multimedia
     def add_multimedia(self, multi_media):
 
-        self.media_dictionary[multi_media.get] = multi_media
+        self.media_dictionary[multi_media.get_title()] = multi_media
 
     # gets multimedia by id
     def find_multimedia_by_Id(self, media_id):
@@ -103,11 +103,10 @@ class MultiMediaManager:
 
     # delete multimedia
     def delete_multi_media(self, media_id):
-        for title, multimedia in self.media_dictionary:
+        for title, multimedia in self.media_dictionary.items():
             if multimedia.media_id == media_id:
-                del self.media_dictionary[multimedia.getTitle()]
+                del self.media_dictionary[title]
                 break
-
 
     # returns an updated multi_media state
     def get_update(self):

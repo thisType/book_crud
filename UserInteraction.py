@@ -196,7 +196,7 @@ class MediaUserInterface:
     def get_media_id_utility(self):
 
         while True:
-            media_id = input("media id")
+            media_id = input("media id:")
 
             if media_id.isdigit() and len(media_id) == 7:
                 return media_id
@@ -207,7 +207,7 @@ class MediaUserInterface:
 
         while True:
 
-            user_input = input("Media Description: ")
+            user_input = input("Media Description:")
 
             if user_input == "":
                 print("MultiMedia must have a decription")
@@ -217,13 +217,12 @@ class MediaUserInterface:
     def get_media_type(self):
         while True:
 
-            user_input = input("Media Type: ")
+            user_input = input("Media Type:")
 
             if user_input == "":
                 print("MultiMedia must have a type")
-            elif not user_input.lower() == "video" or user_input.lower() == "audio":
+            elif not (user_input.lower() == "video" or  user_input.lower() == "audio"):
                 print("Must be either audio or video")
-
 
             else:
                 return user_input
@@ -233,7 +232,7 @@ class MediaUserInterface:
         media = MultiMedia(self.get_media_id(), self.get_media_title(), self.get_media_description(),
                            self.get_media_type())
         self.media_manager.add_multimedia(media)
-        print("Added succesfully")
+        print("Created succesfully")
 
     def find_media(self):
         media = []
@@ -244,13 +243,13 @@ class MediaUserInterface:
             print("1.Media Id")
             print("2.Title")
 
-            user_input = input("Selection")
+            user_input = input("Selection:")
             if user_input == "1":
-                media_id = input("Multimedia Id")
+                media_id = input("Multimedia Id:")
                 found_media = self.media_manager.find_multimedia_by_Id(media_id)
                 break
             elif user_input == "2":
-                user_title = input("Media title")
+                user_title = input("Media title:")
                 media = self.media_manager.find_media_by_title(user_title)
                 break
             else:
@@ -260,7 +259,7 @@ class MediaUserInterface:
             print("Found no multimedia")
 
         else:
-            print("Found: %s \n %s \n %sType: %s" % (found_media.get_id(),
+            print("Found: %s \n %s \n %s Type: %s" % (found_media.get_id(),
                                                      found_media.get_title(), found_media.get_media_description(),
                                                      found_media.get_media_type()))
 
@@ -294,7 +293,7 @@ class MediaUserInterface:
         delete_id = self.get_media_id_utility()
         if delete_id in self.media_id_list:
 
-            self.media_manager.delete_multimedia(delete_id)
+            self.media_manager.delete_multi_media(delete_id)
 
             print("Deleted successfully ")
         else:

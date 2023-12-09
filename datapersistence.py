@@ -91,7 +91,7 @@ class MultimediaPersistence:
             file = open(self.file_name, "w")
 
             for title, media in multimedia_dictionary.items():
-                file.write("%s, %s, %s, %s" % (
+                file.write("%s,%s,%s,%s" % (
                     media.get_id(), media.get_title(), media.get_media_description(), media.get_media_type()))
                 file.write("\n")
 
