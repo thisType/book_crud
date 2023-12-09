@@ -82,11 +82,11 @@ class BookUserInteraction:
             user_input = input("Selection")
             if user_input == "1":
                 isbn = input("ISBN")
-                found = self.book_manager.find_book_by_isbn(isbn)
+                found_book = self.book_manager.find_book_by_isbn(isbn)
                 break
             elif user_input == "2":
-                user_title = input("book title")
-                found = self.book_manager.find_books_by_title(user_title)
+                user_title = input("Book title")
+                found_books = self.book_manager.find_books_by_title(user_title)
                 break
             else:
                 print("Invalid choice!")
@@ -96,10 +96,10 @@ class BookUserInteraction:
 
         else:
             print("Found: %s \n %s \n %s %s" % (
-                found_book.get_title(), found_book.get_description(), found.get_isbn(), found_book.get_author()))
+                found_book.get_title(), found_book.get_description(), found_book.get_isbn(), found_book.get_author()))
 
         if len(found_books) == 0:
-            print("Found no book!")
+            print("Found no books!")
         else:
 
             for bk in found_books:

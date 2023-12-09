@@ -23,9 +23,11 @@ class BookPersistence:
                 book = Book(values_list[0], values_list[1], values_list[2], values_list[3])
 
                 books_dictionary[values_list[0]] = book
+                print(book.book_description)
                 line = file.readline()
 
             file.close()
+            print(books_dictionary)
             return books_dictionary
 
         except IOError:
@@ -37,7 +39,7 @@ class BookPersistence:
         try:
             file = open(self.file_name, "w")
 
-            for title, book in books_dictionary:
+            for title, book in books_dictionary.items():
                 file.write(
                     "%s,%s,%s,%s" % (book.get_title(), book.get_description(), book.get_isbn(), book.get_author()))
                 file.write("\n")
@@ -85,7 +87,7 @@ class MultimediaPersistence:
 
             file = open(self.file_name, "w")
 
-            for title, media in multimedia_dictionary:
+            for title, media in multimedia_dictionary.items():
                 file.write("%s, %s, %s, %s" % (
                     media.get_id(), media.get_title(), media.get_media_description(), media.get_media_type()))
                 file.write("\n")
