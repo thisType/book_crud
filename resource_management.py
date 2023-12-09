@@ -96,7 +96,7 @@ class MultiMediaManager:
 
         for name, multi_media in self.media_dictionary.items():
             # case-insensitivity
-            if not name.lower().find(title.lower()) == -1:
+            if not multi_media.get_title().lower().find(title.lower()) == -1:
                 multi_media_list.append(multi_media)
 
         return multi_media_list
