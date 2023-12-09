@@ -24,7 +24,7 @@ class BookManager:
             if book.get_isbn() == isbn:
                 book_found = book
                 break
-        return  book_found
+        return book_found
 
     def find_books_by_title(self, title):
         found_book = []
@@ -41,8 +41,11 @@ class BookManager:
         self.books_dictionary[book.book_title] = book
 
     # deletes a book
-    def delete_book(self, book):
-        del self.books_dictionary[book.get_title()]
+    def delete_book(self, isbn):
+        for title, book in self.books_dictionary:
+            if book.get_isbn() == isbn:
+                del self.books_dictionary[book.get_title()]
+                break
 
     # returns live update to be written in a file
     def get_update(self):
@@ -71,13 +74,13 @@ class MultiMediaManager:
         self.media_dictionary[multi_media.get] = multi_media
 
     # gets multimedia by id
-    def find_multimedia_by_Id(self, id):
+    def find_multimedia_by_Id(self, media_id):
 
         multi_media_found = None
 
         for title, multi_media in self.media_dictionary.items():
 
-            if id == multi_media.get_id():
+            if media_id == multi_media.get_id():
                 multi_media_found = multi_media
                 break
 
@@ -85,7 +88,7 @@ class MultiMediaManager:
 
     def multi_media_update(self, multi_media):
 
-        self.media_dictionary[multi_media.getTitle] = multi_media
+        self.media_dictionary[multi_media.get_title()] = multi_media
 
     def find_media_by_title(self, title):
 
@@ -93,14 +96,18 @@ class MultiMediaManager:
 
         for name, multi_media in self.media_dictionary.items():
             # case-insensitivity
-            if not name.lower().indexOf(title.lower()) == -1:
+            if not name.lower().find(title.lower()) == -1:
                 multi_media_list.append(multi_media)
 
         return multi_media_list
 
     # delete multimedia
-    def delete_multi_media(self, multi_media):
-        del self.media_dictionary[multi_media.getTitle()]
+    def delete_multi_media(self, media_id):
+        for title, multimedia in self.media_dictionary:
+            if multimedia.media_id == media_id:
+                del self.media_dictionary[multimedia.getTitle()]
+                break
+
 
     # returns an updated multi_media state
     def get_update(self):
@@ -114,4 +121,3 @@ class MultiMediaManager:
             id_list.append(media.media_id)
 
         return id_list
-

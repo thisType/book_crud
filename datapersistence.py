@@ -20,7 +20,8 @@ class BookPersistence:
             line = file.readline()
             while not line == "":
                 values_list = line.split(",")
-                book = Book(values_list[0], values_list[1], values_list[2], values_list[3])
+                print(values_list)
+                book = Book(values_list[0], values_list[1], values_list[2], values_list[3].replace("\n",""))
 
                 books_dictionary[values_list[0]] = book
                 print(book.book_description)
@@ -69,11 +70,13 @@ class MultimediaPersistence:
 
             while not line == "":
                 values = line.split(",")
-
-                multimedia = MultiMedia(values[0], values[1], values[2], values[3])
-
+                if len(values) == 1:
+                    break
+                print(values)
+                multimedia = MultiMedia(values[0], values[1], values[2], values[3].replace("\n", ""))
                 multimedia_dictionary[values[0]] = multimedia
                 line = file.readline()
+
             file.close()
             return multimedia_dictionary
 

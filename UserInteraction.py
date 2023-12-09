@@ -7,7 +7,7 @@ from resources import *
 class BookUserInteraction:
 
     # gets book name from the user
-    def __init__(self,  book_manager):
+    def __init__(self, book_manager):
         self.isbn_list = book_manager.get_isbn_list()
         self.book_manager = book_manager
 
@@ -64,6 +64,15 @@ class BookUserInteraction:
             else:
                 print("Book Must have an author")
 
+    def get_isbn_utility(self):
+
+        while True:
+            isbn = input("ISBN: ")
+            if isbn.isdigit() and len(isbn) == 13:
+                return isbn
+            else:
+                print("Invalid ISBN!")
+
     def create_book(self):
 
         book = Book(self.get_book_title(), self.get_book_description(), self.get_book_isbn(), self.get_book_author())
@@ -95,7 +104,7 @@ class BookUserInteraction:
             print("Found no book by ISBN")
 
         else:
-            print("Found: %s \n %s \n %s %s" % (
+            print("Found: %s \n %s \n ISBN: %s by: %s" % (
                 found_book.get_title(), found_book.get_description(), found_book.get_isbn(), found_book.get_author()))
 
         if len(found_books) == 0:
@@ -103,12 +112,12 @@ class BookUserInteraction:
         else:
 
             for bk in found_books:
-                print("Found: %s \n %s \n %s %s" % (
+                print("Found: %s \n %s \n ISBN: %s by: %s" % (
                     bk.get_title(), bk.get_description(), bk.get_isbn(), bk.get_author()))
 
     def user_update_book(self):
 
-        update_isbn = self.get_book_isbn()
+        update_isbn = self.get_isbn_utility()
 
         update = Book(self.get_book_title(), self.get_book_description(), update_isbn, self.get_book_author())
         self.book_manager.add_book(update)
@@ -117,11 +126,13 @@ class BookUserInteraction:
         print("Update successful")
 
     def user_delete_book(self):
-        isbn = self.get_book_isbn()
+        isbn = self.get_isbn_utility()
 
-        delete = Book(self.get_book_title(), self.get_book_description(), isbn, self.get_book_author())
-        self.book_manager.add_book(delete)
-        print("Delete successful")
+        if isbn in self.isbn_list:
+            self.book_manager.delete_book(isbn)
+            print("Delete successful")
+        else:
+            print("ISBN doesnt exist")
 
     # methods present book activity
     def book_activity(self):
@@ -182,6 +193,16 @@ class MediaUserInterface:
             else:
                 return user_input
 
+    def get_media_id_utility(self):
+
+        while True:
+            media_id = input("media id")
+
+            if media_id.isdigit() and len(media_id) == 7:
+                return media_id
+            else:
+                print("Invalid media id!")
+
     def get_media_description(self):
 
         while True:
@@ -239,40 +260,45 @@ class MediaUserInterface:
             print("Found no multimedia")
 
         else:
-            print("Found: %s \n %s \n %s %s" % (found_media.get_id(),
-                                                found_media.get_title(), found_media.get_media_description(),
-                                                found_media.get_media_type()))
+            print("Found: %s \n %s \n %sType: %s" % (found_media.get_id(),
+                                                     found_media.get_title(), found_media.get_media_description(),
+                                                     found_media.get_media_type()))
 
         if len(media) == 0:
             print("Found no book!")
         else:
 
             for m in media:
-                print("Found: %s \n %s \n %s %s" % (m.get_id(),
-                                                    m.get_title(), m.get_media_description(),
-                                                    m.get_media_type()))
+                print("Found: %s \n %s \n %s Type: %s" % (m.get_id(),
+                                                          m.get_title(), m.get_media_description(),
+                                                          m.get_media_type()))
 
     def media_update(self):
 
         print("MultiMedia update")
 
-        media_id = self.get_media_id()
+        media_id = self.get_media_id_utility()
 
-        media = MultiMedia(media_id, self.get_media_title(), self.get_media_description(),
-                           self.get_media_type())
-        self.media_manager.media_update(media)
-        print("updated successfully")
+        if media_id in self.media_id_list:
+            media = MultiMedia(media_id, self.get_media_title(), self.get_media_description(),
+                               self.get_media_type())
+            self.media_manager.multi_media_update(media)
+            print("updated successfully")
+        else:
+            print("media id doesnt exist")
 
     #
     def delete_media(self):
         print("MultiMedia delete")
 
-        delete_id = self.get_media_id()
-        media = MultiMedia(delete_id, self.get_media_title(), self.get_media_description(),
-                           self.get_media_type())
-        self.media_manager.delete_multimedia(media)
+        delete_id = self.get_media_id_utility()
+        if delete_id in self.media_id_list:
 
-        print("Deleted successfully ")
+            self.media_manager.delete_multimedia(delete_id)
+
+            print("Deleted successfully ")
+        else:
+            print("media id doesnt exist")
 
     # methods handles multimedia activity
     def multimedia_activity(self):
@@ -298,5 +324,3 @@ class MediaUserInterface:
                 break
             else:
                 print("Invalid selection!")
-
-
