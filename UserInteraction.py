@@ -77,7 +77,7 @@ class BookUserInteraction:
 
         book = Book(self.get_book_title(), self.get_book_description(), self.get_book_isbn(), self.get_book_author())
         self.book_manager.add_book(book)
-        print("Created succesfully")2
+        print("Created succesfully")
 
     def user_find_book(self):
 
@@ -101,20 +101,26 @@ class BookUserInteraction:
             else:
                 print("Invalid choice!")
 
+        is_book_found = False
+        is_books_found = False
+
         if found_book is None:
-            print("Found no book by ISBN")
+            is_book_found = True
 
         else:
             print("Found: %s \n %s \n ISBN: %s by: %s" % (
                 found_book.get_title(), found_book.get_description(), found_book.get_isbn(), found_book.get_author()))
 
         if len(found_books) == 0:
-            print("Found no books!")
+            is_books_found = True
         else:
 
             for bk in found_books:
                 print("Found: %s \n %s \n ISBN: %s by: %s" % (
                     bk.get_title(), bk.get_description(), bk.get_isbn(), bk.get_author()))
+
+        if is_books_found and is_book_found:
+            print("Found no book!")
 
     def user_update_book(self):
 
